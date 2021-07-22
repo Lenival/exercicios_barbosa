@@ -19,10 +19,8 @@ def jogar_confete(r=3, R=500, x_c=510, y_c=540, espessura=3, largura=1920, altur
     # Ajustando a referência de posição em relação ao centro da circunferência
     n[:,0:2] = n[:,0:2]-0.5
     # Calculando a posição final dos confetes
-    n[:,0:2] = n[:,0:2]*[2*R,2*R] + [x_c,y_c]
-    #n[:,0],n[:,1] = R*n[:,0]*np.cos(2*np.pi*n[:,1])+x_c, R*n[:,0]*np.sin(2*np.pi*n[:,1])+y_c
-    #n[:,0] = [int(n[:,0])%x_c]+x_c
-    #n[:,1] = [int(n[:,1])%y_c]+y_c
+    #n[:,0:2] = n[:,0:2]*[2*R,2*R] + [x_c,y_c]
+    n[:,0:2] = n[:,0:2]*[largura,altura] + [x_c,y_c]
                 
     # Calculando distância do confete ao centro
     dist_c = np.sqrt(np.sum(np.power(n[:,0:2]-[x_c, y_c],2),axis=1))
@@ -48,6 +46,16 @@ def jogar_confete(r=3, R=500, x_c=510, y_c=540, espessura=3, largura=1920, altur
             c.line_to(x_c-R, y_c)
             c.set_line_width(espessura)
             c.set_source_rgb(0,0,0)
+            c.stroke()
+            
+            c.set_source_rgb(0, 0, 0)
+        
+            c.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL, 
+                cairo.FONT_WEIGHT_NORMAL)
+            c.set_font_size(int(R/20))
+            
+            c.move_to(largura/10, R/20+altura/10)
+            c.show_text(f"D={2*R}")
             c.stroke()
         
         with cairo.SVGSurface("confetes.svg", largura, altura) as surface:
@@ -99,6 +107,22 @@ def jogar_confete(r=3, R=500, x_c=510, y_c=540, espessura=3, largura=1920, altur
             c.set_line_width(espessura)
             c.set_source_rgb(0,0,0)
             c.stroke()
+                        
+            c.set_source_rgb(0, 0, 0)
+        
+            c.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL, 
+                cairo.FONT_WEIGHT_NORMAL)
+            c.set_font_size(int(R/20))
+            
+            c.move_to(largura/10, R/20+altura/10)
+            c.show_text(f"D={2*R}")
+            c.move_to(largura/10, 2*R/20+altura/10)
+            c.show_text(f"Nd={np.sum(confete_s)}")
+            c.move_to(largura/10, 3*R/20+altura/10)
+            c.show_text(f"Nc={np.sum(confete_c)}")
+            c.move_to(largura/10, 4*R/20+altura/10)
+            c.show_text(f"C=D*(Nc/Nd)={np.round(2*R*np.sum(confete_c)/np.sum(confete_s),2)}")
+            c.stroke()
      
     # Retornando razão entre confetes sobre a circunferência e segmento
     return np.sum(confete_c)/np.sum(confete_s)
@@ -106,13 +130,13 @@ def jogar_confete(r=3, R=500, x_c=510, y_c=540, espessura=3, largura=1920, altur
 if __name__ == "__main__":
     
     # Parâmetros da simulação
-    r = 3       # tamanho dos confetes
-    R = 400      # raio da circunferência
-    x_c =800    # x do centro da circunferência
-    y_c =450    # y do centro da circunferência
-    espessura=3 #espessura da linha
-    largura=1600 #resolução horizontal
-    altura=900 # Resolução vertical
+    r = 10       # tamanho dos confetes
+    R = 300      # raio da circunferência
+    espessura=2 #espessura da linha
+    largura=1366 #resolução horizontal
+    altura=768 # Resolução vertical
+    x_c =largura/2    # x do centro da circunferência
+    y_c =altura/2    # y do centro da circunferência
     grade = x_c*y_c # Número total de pontos
     N = 10000   # Número de confetes
     

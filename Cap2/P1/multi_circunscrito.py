@@ -15,7 +15,7 @@ def multi_circunscrito(N=3, R=500, x_c=510, y_c=540, espessura=3, largura=1920, 
     separacao = x_c - R
     # Salvando arquivos svg ilustrando etapas da simulação
     if salvar :
-        with cairo.SVGSurface("poligono_circunscrito.svg", largura, altura) as surface:
+        with cairo.SVGSurface("multi_circunscrito.svg", largura, altura) as surface:
             for m in range(2):            
                 for n in range(3+m*(N-1),N+1+m*2*N,1+2*m):
                     

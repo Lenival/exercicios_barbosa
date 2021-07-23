@@ -63,6 +63,6 @@ if __name__ == "__main__":
     altura=768 # Resolução vertical
     x_c =largura/2    # x do centro da circunferência
     y_c =altura/2    # y do centro da circunferência
-    n = 20   # Número de confetes
+    n = 5   # Número de confetes
     circunscrito(n,R, x_c, y_c, espessura, largura, altura,1)
         

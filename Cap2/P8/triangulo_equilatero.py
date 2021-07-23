@@ -85,7 +85,7 @@ def equilatero(R,x_c,y_c,espessura,largura,altura):
 if __name__ == "__main__":
     R = 100      # raio da circunferência
     espessura=1 #espessura da linha
-    largura=1366 #resolução horizontal
+    largura=1000 #resolução horizontal
     altura=240 # Resolução vertical
     x_c =120   # x do centro da circunferência
     y_c =120    # y do centro da circunferência

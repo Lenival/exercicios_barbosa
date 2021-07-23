@@ -83,7 +83,7 @@ def conjunto_limitado(N, R, x_c, y_c, espessura, largura, altura):
             
         if i==2:
             c.move_to(x_l-int(3*R/20), y_l)
-            c.show_text("C")
+            c.show_text("P")
             c.stroke()
             c.set_source_rgba(0, 0, 1,0.8)
             c.arc(x_l, y_l, R_l, 0, 2*np.pi)
@@ -105,6 +105,6 @@ if __name__ == "__main__":
     altura=1080 # Resolução vertical
     x_c =220   # x do centro da circunferência
     y_c =220    # y do centro da circunferência
-    N = 50
+    N = 80
     
     conjunto_limitado(N,R, x_c, y_c, espessura, largura, altura)

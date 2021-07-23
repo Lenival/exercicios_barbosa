@@ -52,9 +52,9 @@ def jogar_confete(r=3, R=500, x_c=510, y_c=540, espessura=3, largura=1920, altur
         
             c.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL, 
                 cairo.FONT_WEIGHT_NORMAL)
-            c.set_font_size(int(R/20))
+            c.set_font_size(int(3*R/20))
             
-            c.move_to(largura/10, R/20+altura/10)
+            c.move_to(largura/20, R/20+altura/10)
             c.show_text(f"D={2*R}")
             c.stroke()
         
@@ -77,6 +77,7 @@ def jogar_confete(r=3, R=500, x_c=510, y_c=540, espessura=3, largura=1920, altur
             c.set_line_width(espessura)
             c.set_source_rgb(0,0,0)
             c.stroke()
+            surface.write_to_png("confetes.png")
         
         
         with cairo.SVGSurface("colisões.svg", largura, altura) as surface:
@@ -112,16 +113,18 @@ def jogar_confete(r=3, R=500, x_c=510, y_c=540, espessura=3, largura=1920, altur
         
             c.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL, 
                 cairo.FONT_WEIGHT_NORMAL)
-            c.set_font_size(int(R/20))
+            c.set_font_size(int(3*R/20))
             
-            c.move_to(largura/10, R/20+altura/10)
+            c.move_to(largura/20, 3*R/20+altura/10)
             c.show_text(f"D={2*R}")
-            c.move_to(largura/10, 2*R/20+altura/10)
+            c.move_to(largura/20, 2*3*R/20+altura/10)
             c.show_text(f"Nd={np.sum(confete_s)}")
-            c.move_to(largura/10, 3*R/20+altura/10)
+            c.move_to(largura/20, 3*3*R/20+altura/10)
             c.show_text(f"Nc={np.sum(confete_c)}")
-            c.move_to(largura/10, 4*R/20+altura/10)
-            c.show_text(f"C=D*(Nc/Nd)={np.round(2*R*np.sum(confete_c)/np.sum(confete_s),2)}")
+            c.move_to(largura/20, 4*3*R/20+altura/10)
+            c.show_text(f"C=D*(Nc/Nd)")
+            c.move_to(largura/20, 5*3*R/20+altura/10)
+            c.show_text(f"C={np.round(2*R*np.sum(confete_c)/np.sum(confete_s),2)}")
             c.stroke()
      
     # Retornando razão entre confetes sobre a circunferência e segmento
